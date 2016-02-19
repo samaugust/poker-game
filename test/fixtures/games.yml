@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  deck: MyString
+  community_cards: MyString
+  pot: 1.5
+
+two:
+  deck: MyString
+  community_cards: MyString
+  pot: 1.5

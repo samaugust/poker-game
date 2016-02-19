@@ -1,0 +1,51 @@
+<div class="page-header center">
+<h1>LET'S PLAY SOME POKER!  <small>an app by Samuel Hickey</small></h1>
+</div>
+
+<%= button_to "Create Game", { action: :create, :id => Game.new }, method: "post" %>
+
+<div class="center"><%= link_to '<button type="button" class="btn btn-primary btn-lg">Deal</button>'.html_safe, new_game_path %>
+</div>
+
+<% unless Game.all.count == 0 %>
+	<% @decks.each do |deck| %>
+		
+		<p><strong>deal:</strong> <%= hand = JSON.parse(deck.deck).slice(0,7) %></p>
+		
+		<br>
+		
+		<p><strong>all_hands_from_deal:</strong> <%= all_hands = HandCalculator.all_hands_from_cards(hand) %></p>
+		
+		<br>
+		
+		<p><strong>best hand:</strong> <%= best_hand = HandCalculator.best_hand(all_hands) %></p>
+		
+		<br><br>
+		
+		<h3>Visual Representation tho:</h3>
+		
+		<br>
+		
+		<div id="poker-table">
+		<div id="cards">
+		<img src="/assets/<%= best_hand[0][0] %>.gif"/><img src="/assets/<%= best_hand[0][1] %>.gif"/><img src="/assets/<%= best_hand[0][2] %>.gif"/><img src="/assets/<%= best_hand[0][3] %>.gif"/><img src="/assets/<%= best_hand[0][4] %>.gif"/>
+		<br><br><br><br><br><br><br><br>
+		</div>
+		</div>
+		
+		<br>
+		
+		<div class="jumbotron">
+		<div class="center">
+		<strong><%= HandCalculator.winning_hand(best_hand) %></strong>
+		</div>
+		</div>
+
+		<br><br>
+		<div class="center"><%= link_to '<button type="button" class="btn btn-primary btn-lg">Destroy</button>'.html_safe, game_path(Game.find_by(deck: deck.deck)).html_safe, method: :delete %></div>
+		
+		
+		<br>
+		
+	<% end %>
+<% end %>

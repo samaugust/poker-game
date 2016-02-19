@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PokerGame</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</head>
+<body>
+
+	<% flash.each do |name, msg| %>
+		<%= content_tag(:div, msg, class: "alert alert-#{name}") %>
+	<% end %>
+
+	<% if player_signed_in? %>
+		<ul>
+			<li><%= link_to "Play Game!", new_game_path %></li>
+			<li><%= link_to "Sign Out", destroy_player_session_path, method: :delete %></li>
+			<% if current_user.chips.nil? || current_player.chips < 100 %>
+				<li><%= link_to "Give Me Chips", give_me_chips_path, method: :post %></li>
+			<% end %>
+			
+		</ul>
+	<% else %>
+		<ul>
+			<li><%= link_to "Sign in", new_player_session_path %></li>
+			<li><%= link_to "Sign up", new_player_registration_path %></li>
+		</ul>
+	<% end %>
+
+<%= yield %>
+
+</body>
+</html>
