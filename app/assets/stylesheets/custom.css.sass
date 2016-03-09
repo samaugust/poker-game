@@ -1,0 +1,65 @@
+@import "bootstrap-sprockets"
+@import "bootstrap"
+
+
+/*lol I'm an idiot it's :, not = for defining vars*/
+$tan: #8B8F74
+$light-teal: #99C3B5
+$lighter-teal: #F5FAFC
+$orange: #C35641
+$orange-gradient: linear-gradient(to bottom, #c35641 1%,#96422d 100%)
+$dark-green: #2D3A33
+$brown: #28201E
+
+body
+	margin-top: 75px !important
+
+.page-header 
+	// why the are there margins set from bootstrap, oh well
+	margin: 0 !important 
+	position: fixed
+	top: 0
+	left: 0
+	width: 100%
+	background: #fff
+	padding-left: 20px
+	height: 75px
+	z-index: 999
+	ul
+		position: absolute
+		top: 17px
+		right: 20px
+		height: 38px
+		li
+			font-size: 14px
+			display: inline-block
+			vertical-align: top
+			height: 38px
+			a 
+				display: block
+				padding: 10px 20px
+
+.each-game
+	position: relative
+	color: #000
+	margin: 0 50px 50px
+	background: $lighter-teal
+	border: 1px solid $light-teal
+	padding: 30px
+	.poker-table 
+		background: url("pokertable.png") center no-repeat
+		height: 350px
+		.cards
+			padding-top: 130px
+			text-align: center
+	.jumbotron 
+		background: $orange-gradient
+		color: #fff
+	.destroy-btn
+		position: absolute
+		right: 20px 
+		top: 20px
+
+.center
+	font-size: 4em
+	text-align: center

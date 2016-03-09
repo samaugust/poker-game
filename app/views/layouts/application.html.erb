@@ -19,21 +19,27 @@
 		<%= content_tag(:div, msg, class: "alert alert-#{name}") %>
 	<% end %>
 
-	<% if player_signed_in? %>
+
+
+	<!-- The header should be in this file too, tbh -->
+
+	<div class="page-header">
+		
 		<ul>
+		<% if player_signed_in? %>
 			<li><%= link_to "Play Game!", new_game_path %></li>
 			<li><%= link_to "Sign Out", destroy_player_session_path, method: :delete %></li>
-			<% if current_user.chips.nil? || current_player.chips < 100 %>
-				<li><%= link_to "Give Me Chips", give_me_chips_path, method: :post %></li>
+			<% if current_player.chips.nil? || current_player.chips < 100 %>
+			<li><%= link_to "Give Me Chips", give_me_chips_path, method: :post %></li>
 			<% end %>
-			
-		</ul>
-	<% else %>
-		<ul>
+		<% else %>
 			<li><%= link_to "Sign in", new_player_session_path %></li>
 			<li><%= link_to "Sign up", new_player_registration_path %></li>
+		<% end %>
 		</ul>
-	<% end %>
+
+		<h1>LET'S PLAY SOME POKER!  <small>an app by Samuel Hickey</small></h1>
+	</div>
 
 <%= yield %>
 
